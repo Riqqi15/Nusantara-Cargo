@@ -72,5 +72,7 @@ export interface LandingPageContent {
     partnersSub: string;
     testimonialsTitle: string;
     testimonialsSub: string;
+    contactTitle?: string;
+    contactSub?: string;
   };
 }

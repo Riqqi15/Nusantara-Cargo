@@ -78,7 +78,6 @@ export default function AboutUs({ about, title = 'Tentang Kami', lang = 'id' }: 
             className="flex flex-col"
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="h-px bg-sky-200 flex-1"></div>
               <span className="text-sky-600 font-bold uppercase tracking-widest text-sm">{title}</span>
             </div>
             

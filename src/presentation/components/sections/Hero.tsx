@@ -4,12 +4,20 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LandingPageContent } from '../../../domain/entities';
 import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 
 interface HeroProps {
-  hero: LandingPageContent['hero'];
+  hero: {
+    headline: string;
+    subHeadline: string;
+    bgImageUrl: string;
+    bgImageUrls?: string[];
+  };
+  ctaText?: string;
+  lang?: 'en' | 'id';
 }
 
-export default function Hero({ hero }: HeroProps) {
+export default function Hero({ hero, ctaText = 'Pelajari Layanan', lang = 'id' }: HeroProps) {
   const images = hero.bgImageUrls || [hero.bgImageUrl];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -74,6 +82,7 @@ export default function Hero({ hero }: HeroProps) {
           </h1>
         </motion.div>
 
+
         {/* Subheadline */}
         <motion.p
           initial={{ opacity: 0 }}
@@ -96,7 +105,7 @@ export default function Hero({ hero }: HeroProps) {
             className="group relative w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 text-sm font-bold text-white uppercase tracking-widest bg-sky-600 hover:bg-sky-500 transition-colors rounded-lg shadow-lg shadow-sky-900/50"
           >
             <span className="relative z-10 flex items-center gap-2">
-              Cek Tarif & Jadwal
+              {lang === 'en' ? 'Check Rates & Schedule' : 'Cek Tarif & Jadwal'}
               <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </span>
           </a>
@@ -105,7 +114,7 @@ export default function Hero({ hero }: HeroProps) {
             href="#services"
             className="group relative w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 text-sm font-bold text-white uppercase tracking-widest bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors rounded-lg shadow-md"
           >
-            Pelajari Layanan
+            {ctaText}
           </a>
         </motion.div>
       </div>

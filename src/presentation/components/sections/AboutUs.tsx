@@ -7,30 +7,39 @@ import Image from 'next/image';
 
 interface AboutUsProps {
   about: AboutCompany;
+  title?: string;
+  lang?: 'en' | 'id';
 }
 
-const TABS = [
+const TABS_ID = [
   { id: 'sejarah', label: 'Profil Perusahaan' },
   { id: 'misi', label: 'Misi Kami' },
   { id: 'visi', label: 'Visi Global' },
 ] as const;
 
-type TabId = typeof TABS[number]['id'];
+const TABS_EN = [
+  { id: 'sejarah', label: 'Company Profile' },
+  { id: 'misi', label: 'Our Mission' },
+  { id: 'visi', label: 'Global Vision' },
+] as const;
 
-export default function AboutUs({ about }: AboutUsProps) {
+type TabId = typeof TABS_ID[number]['id'];
+
+export default function AboutUs({ about, title = 'Tentang Kami', lang = 'id' }: AboutUsProps) {
   const [activeTab, setActiveTab] = useState<TabId>('sejarah');
+  const tabs = lang === 'en' ? TABS_EN : TABS_ID;
 
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTab((current) => {
-        const currentIndex = TABS.findIndex(t => t.id === current);
-        const nextIndex = (currentIndex + 1) % TABS.length;
-        return TABS[nextIndex].id;
+        const currentIndex = tabs.findIndex(t => t.id === current);
+        const nextIndex = (currentIndex + 1) % tabs.length;
+        return tabs[nextIndex].id;
       });
     }, 5000); // Rotate every 5 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [tabs]);
 
   return (
     <section id="about" className="py-24 md:py-32 relative bg-white z-10 overflow-hidden">
@@ -68,8 +77,9 @@ export default function AboutUs({ about }: AboutUsProps) {
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             className="flex flex-col"
           >
-            <div className="flex items-center mb-6">
-              <span className="text-sky-600 font-bold uppercase tracking-widest text-sm">Tentang Kami</span>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-px bg-sky-200 flex-1"></div>
+              <span className="text-sky-600 font-bold uppercase tracking-widest text-sm">{title}</span>
             </div>
             
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-12 leading-[1.1] tracking-tight">
@@ -78,7 +88,7 @@ export default function AboutUs({ about }: AboutUsProps) {
 
             {/* Tab Navigation Menu */}
             <div className="flex flex-wrap gap-2 mb-12 border-b border-slate-200 pb-px">
-              {TABS.map((tab) => (
+              {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}

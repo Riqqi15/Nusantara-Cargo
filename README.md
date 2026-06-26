@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AeroCargo - Premium Logistics & Freight Next.js Template
 
-## Getting Started
+AeroCargo is a modern, high-performance website template built specifically for logistics, cargo, freight forwarding, and supply chain companies. It features smooth animations, a premium aesthetic, and is built upon a highly maintainable **Clean Architecture** structure.
 
-First, run the development server:
+![Preview Image](public/preview.jpg) <!-- Note: Replace with actual screenshot of your template -->
+
+## 🌟 Key Features
+
+- **Next.js 16 (App Router) & React 19**: Built with the latest, fastest, and most modern web technologies.
+- **Tailwind CSS v4**: Utility-first styling for effortless theme and color customization.
+- **Framer Motion**: Smooth scroll animations, fade-ins, and premium micro-interactions.
+- **Clean Architecture**: Separation of concerns (Domain, Infrastructure, Presentation) makes it incredibly easy to swap out content or integrate with a headless CMS without touching the UI code.
+- **Lucide Icons**: Beautiful, consistent, and customizable vector icons.
+- **Interactive Elements**: Features an animated logo marquee, interactive statistic counters, and scrollspy navigation.
+- **Fully Responsive**: Flawless display across mobile, tablet, and desktop devices.
+- **SEO Optimized**: Fast loading times and semantic HTML structure.
+
+---
+
+## 🚀 Quick Start
+
+Follow these steps to get the template running locally:
+
+### 1. Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) (version 18.17 or higher) installed on your system.
+
+### 2. Install Dependencies
+Run the following command in your terminal:
+
+```bash
+npm install
+```
+*(Note: An `.npmrc` file is included to automatically handle legacy peer dependencies for React 19 compatibility).*
+
+### 3. Run the Development Server
+Start the local server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ How to Customize Content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+One of the biggest advantages of this template is its **Clean Architecture**. You **do not** need to edit the UI components to change the text, services, or testimonials.
 
-## Learn More
+All website data is centralized in one file. To change the content, simply edit:
+👉 `src/infrastructure/repositories/InMemoryContentRepository.ts`
 
-To learn more about Next.js, take a look at the following resources:
+Inside this file, you can easily modify:
+- **Hero Section**: Titles, subtitles, and CTA links.
+- **Stats**: The numbers and labels for your achievements.
+- **Services**: The list of services offered (Air Freight, Sea Freight, etc.).
+- **Fleet**: The list of available vehicles/planes.
+- **Partners**: Company names and logo URLs.
+- **Testimonials**: Client reviews, names, and avatars.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If you wish to fetch data from an API or CMS (like Sanity, Strapi, or Contentful), you simply create a new repository that implements the `ContentRepository` interface in `src/domain/repositories/ContentRepository.ts`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🎨 Changing Colors & Branding
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The template uses standard Tailwind CSS classes. Global styles and custom variables can be found in `src/app/globals.css`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To change the primary brand color (currently Sky Blue), you can either:
+1. Do a global find-and-replace for `sky-600`, `sky-500`, etc., to your preferred Tailwind color (e.g., `emerald-600`).
+2. Define a custom theme color in your CSS/Tailwind configuration.
+
+---
+
+## 📦 Deployment
+
+This template is fully optimized for [Vercel](https://vercel.com). 
+
+1. Push your code to a GitHub repository.
+2. Go to Vercel and import the repository.
+3. Click **Deploy**. The template will automatically build and go live.
+
+---
+
+## 📝 License & Support
+
+If you have purchased this template, you are free to use it for personal or commercial projects. 
+For support, please contact the author via your purchase platform.

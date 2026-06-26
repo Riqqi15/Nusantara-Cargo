@@ -6,6 +6,8 @@ import { Building2, Plane, PlaneTakeoff, Truck, Globe, Droplet, ShoppingCart, St
 
 interface PartnershipsProps {
   partners: Partner[];
+  title?: string;
+  subTitle?: string;
 }
 
 const partnerIcons: Record<string, React.ReactNode> = {
@@ -18,7 +20,11 @@ const partnerIcons: Record<string, React.ReactNode> = {
   p7: <Store className="w-10 h-10" />,
 };
 
-export default function Partnerships({ partners }: PartnershipsProps) {
+export default function Partnerships({ 
+  partners,
+  title = 'Jejaring Kemitraan',
+  subTitle = 'Sinergi bersama perusahaan terkemuka untuk memastikan kualitas logistik tanpa batas.'
+}: PartnershipsProps) {
   // Duplicate the array to create a seamless infinite loop
   const duplicatedPartners = [...partners, ...partners];
 
@@ -51,10 +57,10 @@ export default function Partnerships({ partners }: PartnershipsProps) {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-xs font-bold text-sky-400 uppercase tracking-[0.3em] mb-4">
-              Jejaring Kemitraan
+              {title}
             </h2>
             <p className="text-slate-400 font-medium max-w-xl mx-auto text-lg">
-              Sinergi bersama perusahaan terkemuka untuk memastikan kualitas logistik tanpa batas.
+              {subTitle}
             </p>
           </motion.div>
         </div>

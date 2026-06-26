@@ -7,33 +7,38 @@ import Image from 'next/image';
 
 interface ServicesProps {
   services: Service[];
+  title?: string;
+  subTitle?: string;
+  lang?: 'en' | 'id';
 }
 
-export default function Services({ services }: ServicesProps) {
+export default function Services({ 
+  services, 
+  title = 'Layanan Utama', 
+  subTitle = 'Solusi Logistik Kargo Udara Komprehensif',
+  lang = 'id'
+}: ServicesProps) {
   const icons = [Zap, Globe, GitMerge];
 
   return (
-    <section id="services" className="py-32 relative z-10 bg-slate-100">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="text-center max-w-3xl mx-auto mb-20 md:mb-24">
-          <motion.h2 
+    <section id="services" className="py-24 relative bg-slate-50 overflow-hidden">
+      {/* Decorative background */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-40 -left-20 w-72 h-72 bg-blue-200/30 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="text-center mb-20 max-w-3xl mx-auto">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight"
+            transition={{ duration: 0.6 }}
           >
-            Layanan Utama
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-slate-500 text-lg font-nunito leading-relaxed"
-          >
-            Arsitektur logistik udara yang dirancang dengan presisi untuk memenuhi skala dan kecepatan operasi bisnis modern.
-          </motion.p>
+            <span className="text-sky-600 font-bold uppercase tracking-widest text-sm block mb-4">{title}</span>
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight mb-6">{subTitle}</h2>
+          </motion.div>
         </div>
 
         {/* Interactive Hover Cards Grid */}
@@ -70,7 +75,7 @@ export default function Services({ services }: ServicesProps) {
                       <Icon className="w-6 h-6 stroke-[1.5]" />
                     </div>
                     <div className="text-white font-bold text-sm tracking-widest uppercase drop-shadow-md">
-                      Layanan 0{index + 1}
+                      {lang === 'en' ? 'Service ' : 'Layanan '}0{index + 1}
                     </div>
                   </div>
                   
@@ -88,7 +93,7 @@ export default function Services({ services }: ServicesProps) {
                         </p>
                         
                         <a href="#contact" className="inline-flex items-center gap-2 text-sky-400 font-bold hover:text-sky-300 transition-colors uppercase tracking-wider text-sm">
-                          Eksplorasi
+                          {lang === 'en' ? 'Explore' : 'Eksplorasi'}
                           <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
                         </a>
                       </div>

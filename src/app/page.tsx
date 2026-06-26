@@ -9,13 +9,16 @@ import FleetShowcase from '../presentation/components/sections/Fleet';
 import Partnerships from '../presentation/components/sections/Partnerships';
 import Testimonials from '../presentation/components/sections/Testimonials';
 
+export const dynamic = 'force-dynamic';
+
 // Next.js Server Component (Async Component in App Router)
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const lang = searchParams.lang === 'en' ? 'en' : 'id';
+  const params = await searchParams;
+  const lang = params.lang === 'en' ? 'en' : 'id';
   
   // Fetch data using Clean Architecture Use Case
   const content = await getLandingPageContentUseCase.execute(lang);
@@ -26,23 +29,23 @@ export default async function Home({
       <div className="relative z-10 w-full flex flex-col min-h-screen">
         <Navbar currentLang={lang} />
         
-        <Hero hero={content.hero} />
+        <Hero hero={content.hero} ctaText={content.labels.heroCta} lang={lang} />
         
         <div className="relative">
-          <StatsBar stats={content.achievements} />
+          <StatsBar stats={content.achievements} lang={lang} />
         </div>
 
-        <AboutUs about={content.about} />
+        <AboutUs about={content.about} title={content.labels.aboutTitle} lang={lang} />
         
-        <Services services={content.services} />
+        <Services services={content.services} title={content.labels.servicesTitle} subTitle={content.labels.servicesSub} lang={lang} />
         
-        <FleetShowcase fleets={content.fleets} />
+        <FleetShowcase fleets={content.fleets} title={content.labels.fleetTitle} subTitle={content.labels.fleetSub} lang={lang} />
 
-        <Partnerships partners={content.partners} />
+        <Partnerships partners={content.partners} title={content.labels.partnersTitle} subTitle={content.labels.partnersSub} />
 
-        <Testimonials testimonials={content.testimonials} />
+        <Testimonials testimonials={content.testimonials} title={content.labels.testimonialsTitle} subTitle={content.labels.testimonialsSub} />
         
-        <Footer />
+        <Footer lang={lang} />
       </div>
     </main>
   );

@@ -61,4 +61,16 @@ export interface LandingPageContent {
   fleets: Fleet[];
   partners: Partner[];
   testimonials: Testimonial[];
+  labels: {
+    heroCta: string;
+    aboutTitle: string;
+    servicesTitle: string;
+    servicesSub: string;
+    fleetTitle: string;
+    fleetSub: string;
+    partnersTitle: string;
+    partnersSub: string;
+    testimonialsTitle: string;
+    testimonialsSub: string;
+  };
 }

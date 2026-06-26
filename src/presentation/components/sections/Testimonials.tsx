@@ -6,9 +6,15 @@ import { Quote, User } from 'lucide-react';
 
 interface TestimonialsProps {
   testimonials: Testimonial[];
+  title?: string;
+  subTitle?: string;
 }
 
-export default function Testimonials({ testimonials }: TestimonialsProps) {
+export default function Testimonials({ 
+  testimonials,
+  title = 'Testimoni Klien',
+  subTitle = 'Pengalaman nyata dari para mitra yang telah mempercayakan urusan logistik udara mereka kepada Nusantara Cargo.'
+}: TestimonialsProps) {
   return (
     <section id="testimonials" className="py-24 bg-slate-900 relative overflow-hidden">
       {/* Background Decorative */}
@@ -26,14 +32,11 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-xs font-bold text-sky-400 uppercase tracking-[0.3em] mb-4">
-              Testimoni Klien
+              {title}
             </h2>
             <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-6 tracking-tight">
-              Kualitas yang Terbukti
+              {subTitle}
             </h3>
-            <p className="text-slate-400 text-lg">
-              Pengalaman nyata dari para mitra yang telah mempercayakan urusan logistik udara mereka kepada Nusantara Cargo.
-            </p>
           </motion.div>
         </div>
 

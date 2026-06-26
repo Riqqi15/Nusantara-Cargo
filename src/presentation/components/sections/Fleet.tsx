@@ -7,9 +7,17 @@ import Image from 'next/image';
 
 interface FleetProps {
   fleets: Fleet[];
+  title?: string;
+  subTitle?: string;
+  lang?: 'en' | 'id';
 }
 
-export default function FleetShowcase({ fleets }: FleetProps) {
+export default function FleetShowcase({ 
+  fleets,
+  title = 'Kekuatan Udara Nusantara',
+  subTitle = 'Didukung oleh armada modern berspesifikasi tinggi yang dirancang khusus untuk efisiensi maksimum di setiap rute penerbangan.',
+  lang = 'id'
+}: FleetProps) {
   return (
     <section id="fleet" className="py-24 md:py-32 bg-white relative z-20">
       <div className="container mx-auto px-6 md:px-12">
@@ -21,7 +29,7 @@ export default function FleetShowcase({ fleets }: FleetProps) {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight"
           >
-            Kekuatan Udara Nusantara
+            {title}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -30,7 +38,7 @@ export default function FleetShowcase({ fleets }: FleetProps) {
             transition={{ delay: 0.2 }}
             className="text-slate-500 text-lg font-nunito"
           >
-            Didukung oleh armada modern berspesifikasi tinggi yang dirancang khusus untuk efisiensi maksimum di setiap rute penerbangan.
+            {subTitle}
           </motion.p>
         </div>
 
@@ -57,7 +65,7 @@ export default function FleetShowcase({ fleets }: FleetProps) {
                   
                   {/* Decorative Elements */}
                   <div className="absolute bottom-6 left-6 text-white font-bold text-sm tracking-widest opacity-90 uppercase pointer-events-none drop-shadow-md">
-                    Armada ID: {fleet.id}
+                    {lang === 'en' ? 'Fleet ID:' : 'Armada ID:'} {fleet.id}
                   </div>
                 </div>
               </motion.div>
@@ -81,28 +89,28 @@ export default function FleetShowcase({ fleets }: FleetProps) {
                   <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 flex flex-col items-center justify-center text-center hover:shadow-md hover:border-slate-300 transition-all group">
                     <Box className="w-8 h-8 stroke-[1.5] text-slate-700 mb-4 group-hover:scale-110 group-hover:text-sky-600 transition-all duration-300" />
                     <h4 className="text-xl font-bold text-slate-900 mb-1">{fleet.payloadCapacity}</h4>
-                    <span className="text-sm text-slate-500 font-nunito">Kapasitas Angkut</span>
+                    <span className="text-sm text-slate-500 font-nunito">{lang === 'en' ? 'Payload Capacity' : 'Kapasitas Angkut'}</span>
                   </div>
 
                   {/* Jangkauan Terbang */}
                   <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 flex flex-col items-center justify-center text-center hover:shadow-md hover:border-slate-300 transition-all group">
                     <Globe className="w-8 h-8 stroke-[1.5] text-slate-700 mb-4 group-hover:scale-110 group-hover:text-sky-600 transition-all duration-300" />
                     <h4 className="text-xl font-bold text-slate-900 mb-1">{fleet.maxRange}</h4>
-                    <span className="text-sm text-slate-500 font-nunito">Jangkauan Terbang</span>
+                    <span className="text-sm text-slate-500 font-nunito">{lang === 'en' ? 'Flight Range' : 'Jangkauan Terbang'}</span>
                   </div>
 
                   {/* Min Panjang Landasan */}
                   <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 flex flex-col items-center justify-center text-center hover:shadow-md hover:border-slate-300 transition-all group">
                     <PlaneTakeoff className="w-8 h-8 stroke-[1.5] text-slate-700 mb-4 group-hover:scale-110 group-hover:text-sky-600 transition-all duration-300" />
                     <h4 className="text-xl font-bold text-slate-900 mb-1">{fleet.minRunway}</h4>
-                    <span className="text-sm text-slate-500 font-nunito">Min. Panjang Landasan</span>
+                    <span className="text-sm text-slate-500 font-nunito">{lang === 'en' ? 'Min. Runway Length' : 'Min. Panjang Landasan'}</span>
                   </div>
 
                   {/* Volume Kargo */}
                   <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 flex flex-col items-center justify-center text-center hover:shadow-md hover:border-slate-300 transition-all group">
                     <Maximize className="w-8 h-8 stroke-[1.5] text-slate-700 mb-4 group-hover:scale-110 group-hover:text-sky-600 transition-all duration-300" />
                     <h4 className="text-xl font-bold text-slate-900 mb-1">{fleet.volume}</h4>
-                    <span className="text-sm text-slate-500 font-nunito">Volume Kargo</span>
+                    <span className="text-sm text-slate-500 font-nunito">{lang === 'en' ? 'Cargo Volume' : 'Volume Kargo'}</span>
                   </div>
                 </div>
 

@@ -6,9 +6,10 @@ import { Award, Map, PackageCheck, Clock } from 'lucide-react';
 
 interface StatsBarProps {
   stats: Achievement[];
+  lang?: 'en' | 'id';
 }
 
-export default function StatsBar({ stats }: StatsBarProps) {
+export default function StatsBar({ stats, lang = 'id' }: StatsBarProps) {
   const icons = [Award, Map, PackageCheck, Clock];
 
   return (
@@ -23,12 +24,14 @@ export default function StatsBar({ stats }: StatsBarProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="text-sky-600 font-bold text-sm tracking-widest mb-6 uppercase">Pencapaian Kami</div>
+            <div className="text-sky-600 font-bold text-sm tracking-widest mb-6 uppercase">
+              {lang === 'en' ? 'Our Achievements' : 'Pencapaian Kami'}
+            </div>
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tighter">
-              Bukan Sekadar <br /> Angka di Atas Kertas.
+              {lang === 'en' ? 'Beyond Just' : 'Bukan Sekadar'} <br /> {lang === 'en' ? 'Numbers on Paper.' : 'Angka di Atas Kertas.'}
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed font-light font-nunito max-w-lg">
-              Setiap pencapaian kami adalah bukti nyata dedikasi dan presisi tingkat tinggi dalam menangani logistik udara berskala nasional maupun internasional.
+              {lang === 'en' ? 'Every milestone is tangible proof of our high-level dedication and precision in handling air logistics locally and globally.' : 'Setiap pencapaian kami adalah bukti nyata dedikasi dan presisi tingkat tinggi dalam menangani logistik udara berskala nasional maupun internasional.'}
             </p>
           </motion.div>
 

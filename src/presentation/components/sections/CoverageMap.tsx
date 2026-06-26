@@ -8,9 +8,10 @@ import { CoverageData } from "../../../domain/entities/Location";
 
 interface CoverageMapProps {
   data: CoverageData;
+  lang?: 'en' | 'id';
 }
 
-export default function CoverageMap({ data }: CoverageMapProps) {
+export default function CoverageMap({ data, lang = 'id' }: CoverageMapProps) {
   const geoUrl = "/features.json";
   
   const [position, setPosition] = useState({ coordinates: [115, 10] as [number, number], zoom: 1 });
@@ -36,14 +37,14 @@ export default function CoverageMap({ data }: CoverageMapProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0A2540] mb-6">
-            Jangkauan Global & <span className="text-[#38bdf8] relative inline-block">
-              Domestik
+            {lang === 'en' ? 'Global & ' : 'Jangkauan Global & '}<span className="text-[#38bdf8] relative inline-block">
+              {lang === 'en' ? 'Domestic Reach' : 'Domestik'}
               <span className="absolute -bottom-2 left-0 w-full h-1 bg-[#38bdf8]/20 rounded-full"></span>
             </span>
           </h2>
           
           <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Menghubungkan Nusantara dengan pusat bisnis strategis di seluruh dunia melalui jaringan penerbangan kargo yang cepat, aman, dan dapat diandalkan.
+            {lang === 'en' ? 'Connecting Nusantara with strategic business hubs worldwide through a fast, secure, and reliable air cargo flight network.' : 'Menghubungkan Nusantara dengan pusat bisnis strategis di seluruh dunia melalui jaringan penerbangan kargo yang cepat, aman, dan dapat diandalkan.'}
           </p>
         </div>
 

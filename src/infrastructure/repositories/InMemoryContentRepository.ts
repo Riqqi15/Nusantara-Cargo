@@ -101,7 +101,21 @@ const dataId: LandingPageContent = {
       content: 'Pengiriman alat kesehatan membutuhkan kehati-hatian ekstra, dan Nusantara Cargo membuktikan mereka ahlinya.',
       avatarUrl: ''
     }
-  ]
+  ],
+  labels: {
+    heroCta: 'Pelajari Layanan',
+    aboutTitle: 'Tentang Kami',
+    servicesTitle: 'Layanan Utama',
+    servicesSub: 'Solusi Logistik Kargo Udara Komprehensif',
+    fleetTitle: 'Armada Udara',
+    fleetSub: 'Didukung oleh armada modern berspesifikasi tinggi yang dirancang khusus untuk efisiensi maksimum di setiap rute penerbangan.',
+    partnersTitle: 'Jejaring Kemitraan',
+    partnersSub: 'Mitra Kepercayaan',
+    testimonialsTitle: 'Suara Pelanggan',
+    testimonialsSub: 'Pengalaman nyata dari para mitra yang telah mempercayakan urusan logistik udara mereka kepada Nusantara Cargo.',
+    contactTitle: 'Hubungi Kami',
+    contactSub: 'Siap untuk mengirimkan kargo Anda?'
+  }
 };
 
 const dataEn: LandingPageContent = {
@@ -204,9 +218,22 @@ const dataEn: LandingPageContent = {
       content: 'Shipping medical equipment requires extra care, and Nusantara Cargo proves they are the experts.',
       avatarUrl: ''
     }
-  ]
+  ],
+  labels: {
+    heroCta: 'Explore Services',
+    aboutTitle: 'About Us',
+    servicesTitle: 'Main Services',
+    servicesSub: 'Comprehensive Air Cargo Logistics Solutions',
+    fleetTitle: 'Air Fleet',
+    fleetSub: 'Supported by a modern, high-specification fleet designed specifically for maximum efficiency on every flight route.',
+    partnersTitle: 'Partnership Network',
+    partnersSub: 'Trusted Partners',
+    testimonialsTitle: 'Customer Voices',
+    testimonialsSub: 'Real experiences from partners who have entrusted their air logistics needs to Nusantara Cargo.',
+    contactTitle: 'Contact Us',
+    contactSub: 'Ready to ship your cargo?'
+  }
 };
-
 export class InMemoryContentRepository implements ContentRepository {
   async getLandingPageData(lang?: 'id' | 'en'): Promise<LandingPageContent> {
     return lang === 'en' ? dataEn : dataId;

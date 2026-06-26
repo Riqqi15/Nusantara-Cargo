@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Testimonial } from '../../../domain/entities';
 import { Quote, User } from 'lucide-react';
+import Image from 'next/image';
 
 interface TestimonialsProps {
   testimonials: Testimonial[];
@@ -53,13 +54,13 @@ export default function Testimonials({
               <Quote className="absolute top-8 right-8 w-12 h-12 text-slate-700/50 group-hover:text-sky-500/20 transition-colors duration-500" />
               
               <p className="text-slate-300 leading-relaxed relative z-10 mb-10 text-lg font-light">
-                "{testimonial.content}"
+                &quot;{testimonial.content}&quot;
               </p>
 
               <div className="flex items-center gap-4 mt-auto border-t border-slate-700/50 pt-6">
                 <div className="w-12 h-12 rounded-full bg-slate-700 border-2 border-slate-600 flex items-center justify-center text-slate-400 overflow-hidden shrink-0 group-hover:border-sky-500/50 transition-colors">
                   {testimonial.avatarUrl ? (
-                    <img src={testimonial.avatarUrl} alt={testimonial.name} className="w-full h-full object-cover" />
+                    <Image src={testimonial.avatarUrl} alt={testimonial.name} width={48} height={48} className="w-full h-full object-cover" />
                   ) : (
                     <User className="w-5 h-5" />
                   )}

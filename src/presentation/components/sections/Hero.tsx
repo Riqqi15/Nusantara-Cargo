@@ -2,9 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LandingPageContent } from '../../../domain/entities';
 import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
 
 interface HeroProps {
   hero: {

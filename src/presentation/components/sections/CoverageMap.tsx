@@ -30,7 +30,6 @@ export default function CoverageMap({ data, lang = 'id' }: CoverageMapProps) {
     setPosition(pos);
   };
 
-  const hub = data.locations.find((l) => l.type === 'hub');
 
   return (
     <section className="w-full bg-slate-100 text-slate-900 border-y border-slate-200 relative overflow-hidden py-24">
@@ -85,7 +84,7 @@ export default function CoverageMap({ data, lang = 'id' }: CoverageMapProps) {
               </Geographies>
 
               {/* Routes / Lines */}
-              {data.routes.map((route, i) => {
+              {data.routes.map((route) => {
                 const from = data.locations.find((l) => l.id === route.fromId);
                 const to = data.locations.find((l) => l.id === route.toId);
 

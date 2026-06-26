@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, Globe } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -72,7 +72,9 @@ export default function Navbar({ currentLang = 'id' }: { currentLang?: 'id' | 'e
     window.addEventListener('scroll', handleScroll);
     
     if (pathname !== '/') {
-      setActiveLink(window.location.pathname + window.location.hash || window.location.pathname);
+      setTimeout(() => {
+        setActiveLink(window.location.pathname + window.location.hash || window.location.pathname);
+      }, 0);
     }
     
     handleScroll();

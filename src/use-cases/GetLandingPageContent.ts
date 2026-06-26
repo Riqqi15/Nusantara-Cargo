@@ -12,9 +12,9 @@ export class GetLandingPageContent {
     this.repository = repository;
   }
 
-  async execute(): Promise<LandingPageContent> {
+  async execute(lang?: 'id' | 'en'): Promise<LandingPageContent> {
     // Di sini bisa ditambahkan logic tambahan jika perlu (misal: filtering, sorting)
-    const content = await this.repository.getLandingPageData();
+    const content = await this.repository.getLandingPageData(lang);
     return content;
   }
 }

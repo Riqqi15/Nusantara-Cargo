@@ -1,15 +1,16 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
-export default function Navbar() {
+export default function Navbar({ currentLang = 'id' }: { currentLang?: 'id' | 'en' }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const [activeLink, setActiveLink] = useState('');
 
   const isDarkPage = pathname === '/';
@@ -56,13 +57,27 @@ export default function Navbar() {
 
   const solidMode = forceSolid || isScrolled;
 
-  const navLinks = [
+  const navLinks = currentLang === 'en' ? [
+    { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/#about' },
+    { name: 'Services', href: '/#services' },
+    { name: 'Fleet', href: '/#fleet' },
+    { name: 'Coverage', href: '/coverage' },
+  ] : [
     { name: 'Beranda', href: '/' },
     { name: 'Tentang Kami', href: '/#about' },
     { name: 'Layanan', href: '/#services' },
     { name: 'Armada', href: '/#fleet' },
     { name: 'Jangkauan', href: '/coverage' },
   ];
+
+  const contactText = currentLang === 'en' ? 'Contact Us' : 'Hubungi Kami';
+
+  const toggleLanguage = () => {
+    const newLang = currentLang === 'en' ? 'id' : 'en';
+    const hash = window.location.hash;
+    router.push(`?lang=${newLang}${hash}`, { scroll: false });
+  };
 
   return (
     <header
@@ -74,7 +89,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
+        <a href={`/?lang=${currentLang}`} className="flex items-center gap-3 group">
           <div className="relative flex items-center justify-center w-12 h-12 bg-white rounded-lg shadow-sm flex-shrink-0 p-1">
             <Image src="/logo.png" alt="Nusantara Cargo Logo" width={40} height={40} className="object-contain" />
           </div>
@@ -82,11 +97,11 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
-              href={link.href}
+              href={`${link.href}${link.href.includes('?') ? '&' : '?'}lang=${currentLang}`}
               onClick={() => setActiveLink(link.href)}
               className={`relative font-medium transition-colors text-xs uppercase tracking-[0.2em] group ${solidMode ? 'text-slate-600 hover:text-sky-600' : 'text-slate-200 hover:text-white'} ${activeLink === link.href ? (solidMode ? '!text-sky-600' : '!text-white') : ''}`}
             >
@@ -94,22 +109,53 @@ export default function Navbar() {
               <span className={`absolute -bottom-2 left-0 h-[2px] bg-sky-500 transition-all duration-300 ${activeLink === link.href ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </a>
           ))}
-          <a
-            href="#contact"
-            className="group relative inline-flex items-center justify-center gap-2 px-8 py-3 text-sm font-bold text-white uppercase tracking-widest bg-sky-600 rounded-lg hover:bg-sky-500 transition-colors shadow-md"
-          >
-            <Phone className="w-4 h-4" />
-            Hubungi Kami
-          </a>
+          
+          <div className="flex items-center gap-4 border-l pl-4 border-slate-300/30">
+            {/* Language Switcher */}
+            <button
+              onClick={toggleLanguage}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold uppercase tracking-widest transition-colors ${
+                solidMode 
+                  ? 'border-slate-300 text-slate-600 hover:bg-slate-100' 
+                  : 'border-white/30 text-white hover:bg-white/10'
+              }`}
+            >
+              <Globe className="w-3.5 h-3.5" />
+              {currentLang === 'id' ? 'ID' : 'EN'}
+            </button>
+
+            <a
+              href={`#contact?lang=${currentLang}`}
+              className="group relative inline-flex items-center justify-center gap-2 px-6 py-2.5 text-xs font-bold text-white uppercase tracking-widest bg-sky-600 rounded-lg hover:bg-sky-500 transition-colors shadow-md"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              {contactText}
+            </a>
+          </div>
         </nav>
 
         {/* Mobile Toggle */}
-        <button
-          className={`md:hidden p-2 rounded-lg border ${solidMode ? 'text-slate-700 bg-slate-100 border-slate-200' : 'text-white bg-black/20 border-white/20'}`}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="flex items-center gap-4 md:hidden">
+          {/* Language Switcher Mobile */}
+          <button
+            onClick={toggleLanguage}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-bold uppercase tracking-widest transition-colors ${
+              solidMode 
+                ? 'border-slate-300 text-slate-600 bg-white/50' 
+                : 'border-white/30 text-white bg-black/20'
+            }`}
+          >
+            <Globe className="w-3 h-3" />
+            {currentLang === 'id' ? 'ID' : 'EN'}
+          </button>
+
+          <button
+            className={`p-2 rounded-lg border ${solidMode ? 'text-slate-700 bg-slate-100 border-slate-200' : 'text-white bg-black/20 border-white/20'}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Nav */}
@@ -124,7 +170,7 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={link.href}
+                href={`${link.href}${link.href.includes('?') ? '&' : '?'}lang=${currentLang}`}
                 onClick={() => {
                   setActiveLink(link.href);
                   setMobileMenuOpen(false);
@@ -136,12 +182,12 @@ export default function Navbar() {
             ))}
             <div className="px-6 pt-6 pb-4">
               <a
-                href="#contact"
+                href={`#contact?lang=${currentLang}`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex justify-center items-center gap-2 text-center bg-sky-600 hover:bg-sky-500 transition-colors text-white px-6 py-4 rounded-lg font-bold uppercase tracking-widest text-sm shadow-md"
               >
                 <Phone className="w-4 h-4" />
-                Hubungi Kami
+                {contactText}
               </a>
             </div>
           </motion.nav>

@@ -5,5 +5,5 @@ import { LandingPageContent } from '../entities';
 // Layer use-cases hanya tahu interface ini, tidak tahu darimana data berasal (DB, API, atau Memory).
 
 export interface ContentRepository {
-  getLandingPageData(): Promise<LandingPageContent>;
+  getLandingPageData(lang?: 'id' | 'en'): Promise<LandingPageContent>;
 }

@@ -10,15 +10,21 @@ import Partnerships from '../presentation/components/sections/Partnerships';
 import Testimonials from '../presentation/components/sections/Testimonials';
 
 // Next.js Server Component (Async Component in App Router)
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const lang = searchParams.lang === 'en' ? 'en' : 'id';
+  
   // Fetch data using Clean Architecture Use Case
-  const content = await getLandingPageContentUseCase.execute();
+  const content = await getLandingPageContentUseCase.execute(lang);
 
   return (
     <main className="relative min-h-screen selection:bg-sky-200 selection:text-sky-900 bg-slate-100 text-slate-900">
       {/* Overlay Content */}
       <div className="relative z-10 w-full flex flex-col min-h-screen">
-        <Navbar />
+        <Navbar currentLang={lang} />
         
         <Hero hero={content.hero} />
         

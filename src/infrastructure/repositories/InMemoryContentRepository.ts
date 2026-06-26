@@ -83,7 +83,7 @@ const dataId: LandingPageContent = {
       role: 'Supply Chain Manager',
       company: 'PT. Teknologi Global',
       content: 'Nusantara Cargo sangat dapat diandalkan. Pengiriman komponen elektronik kami dari luar negeri selalu tepat waktu dan aman.',
-      avatarUrl: ''
+      avatarUrl: '/images/avatars/avatar_1.png'
     },
     {
       id: 't2',
@@ -91,7 +91,7 @@ const dataId: LandingPageContent = {
       role: 'CEO',
       company: 'Export Indo',
       content: 'Layanan carter mereka sangat membantu ketika kami memiliki kebutuhan mendesak. Timnya profesional dan responsif.',
-      avatarUrl: ''
+      avatarUrl: '/images/avatars/avatar_2.png'
     },
     {
       id: 't3',
@@ -99,7 +99,7 @@ const dataId: LandingPageContent = {
       role: 'Direktur Operasional',
       company: 'Medikal Utama',
       content: 'Pengiriman alat kesehatan membutuhkan kehati-hatian ekstra, dan Nusantara Cargo membuktikan mereka ahlinya.',
-      avatarUrl: ''
+      avatarUrl: '/images/avatars/avatar_3.png'
     }
   ],
   labels: {
@@ -200,7 +200,7 @@ const dataEn: LandingPageContent = {
       role: 'Supply Chain Manager',
       company: 'PT. Teknologi Global',
       content: 'Nusantara Cargo is highly reliable. Our electronic component shipments from overseas are always on time and safe.',
-      avatarUrl: ''
+      avatarUrl: '/images/avatars/avatar_1.png'
     },
     {
       id: 't2',
@@ -208,7 +208,7 @@ const dataEn: LandingPageContent = {
       role: 'CEO',
       company: 'Export Indo',
       content: 'Their charter service is extremely helpful when we have urgent needs. The team is professional and responsive.',
-      avatarUrl: ''
+      avatarUrl: '/images/avatars/avatar_2.png'
     },
     {
       id: 't3',
@@ -216,7 +216,7 @@ const dataEn: LandingPageContent = {
       role: 'Operations Director',
       company: 'Medikal Utama',
       content: 'Shipping medical equipment requires extra care, and Nusantara Cargo proves they are the experts.',
-      avatarUrl: ''
+      avatarUrl: '/images/avatars/avatar_3.png'
     }
   ],
   labels: {

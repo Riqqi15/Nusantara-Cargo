@@ -83,17 +83,17 @@ export default function Navbar({ currentLang = 'id' }: { currentLang?: 'id' | 'e
   const solidMode = forceSolid || isScrolled;
 
   const navLinks = currentLang === 'en' ? [
-    { name: 'Home', href: '/' },
-    { name: 'About Us', href: '/#about' },
-    { name: 'Services', href: '/#services' },
-    { name: 'Fleet', href: '/#fleet' },
-    { name: 'Coverage', href: '/coverage' },
+    { name: 'Home', href: '/?lang=en' },
+    { name: 'About Us', href: '/?lang=en#about' },
+    { name: 'Services', href: '/?lang=en#services' },
+    { name: 'Fleet', href: '/?lang=en#fleet' },
+    { name: 'Coverage', href: '/coverage?lang=en' },
   ] : [
-    { name: 'Beranda', href: '/' },
-    { name: 'Tentang Kami', href: '/#about' },
-    { name: 'Layanan', href: '/#services' },
-    { name: 'Armada', href: '/#fleet' },
-    { name: 'Jangkauan', href: '/coverage' },
+    { name: 'Beranda', href: '/?lang=id' },
+    { name: 'Tentang Kami', href: '/?lang=id#about' },
+    { name: 'Layanan', href: '/?lang=id#services' },
+    { name: 'Armada', href: '/?lang=id#fleet' },
+    { name: 'Jangkauan', href: '/coverage?lang=id' },
   ];
 
   const contactText = currentLang === 'en' ? 'Contact Us' : 'Hubungi Kami';
@@ -126,7 +126,7 @@ export default function Navbar({ currentLang = 'id' }: { currentLang?: 'id' | 'e
           {navLinks.map((link) => (
             <a
               key={link.name}
-              href={`${link.href}${link.href.includes('?') ? '&' : '?'}lang=${currentLang}`}
+              href={link.href}
               onClick={() => setActiveLink(link.href)}
               className={`relative font-medium transition-colors text-xs uppercase tracking-[0.2em] group ${solidMode ? 'text-slate-600 hover:text-sky-600' : 'text-slate-200 hover:text-white'} ${activeLink === link.href ? (solidMode ? '!text-sky-600' : '!text-white') : ''}`}
             >
@@ -150,7 +150,7 @@ export default function Navbar({ currentLang = 'id' }: { currentLang?: 'id' | 'e
             </button>
 
             <a
-              href={`#contact?lang=${currentLang}`}
+              href={`/?lang=${currentLang}#contact`}
               className="group relative inline-flex items-center justify-center gap-2 px-6 py-2.5 text-xs font-bold text-white uppercase tracking-widest bg-sky-600 rounded-lg hover:bg-sky-500 transition-colors shadow-md"
             >
               <Phone className="w-3.5 h-3.5" />
@@ -195,7 +195,7 @@ export default function Navbar({ currentLang = 'id' }: { currentLang?: 'id' | 'e
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={`${link.href}${link.href.includes('?') ? '&' : '?'}lang=${currentLang}`}
+                href={link.href}
                 onClick={() => {
                   setActiveLink(link.href);
                   setMobileMenuOpen(false);
@@ -207,7 +207,7 @@ export default function Navbar({ currentLang = 'id' }: { currentLang?: 'id' | 'e
             ))}
             <div className="px-6 pt-6 pb-4">
               <a
-                href={`#contact?lang=${currentLang}`}
+                href={`/?lang=${currentLang}#contact`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex justify-center items-center gap-2 text-center bg-sky-600 hover:bg-sky-500 transition-colors text-white px-6 py-4 rounded-lg font-bold uppercase tracking-widest text-sm shadow-md"
               >

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -10,15 +10,49 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [activeLink, setActiveLink] = useState('');
 
   const isDarkPage = pathname === '/';
   const forceSolid = !isDarkPage;
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+
+      if (pathname === '/') {
+        const sections = ['about', 'services', 'fleet'];
+        let currentActive = '/';
+        
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            // Offset 200px to account for the fixed navbar height
+            if (rect.top <= 200 && rect.bottom >= 200) {
+              currentActive = '/#' + section;
+              break;
+            }
+          }
+        }
+        
+        if (window.scrollY < 100) {
+          currentActive = '/';
+        }
+        
+        setActiveLink(currentActive);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
+    
+    if (pathname !== '/') {
+      setActiveLink(window.location.pathname + window.location.hash || window.location.pathname);
+    }
+    
+    handleScroll();
+    
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pathname]);
 
   const solidMode = forceSolid || isScrolled;
 
@@ -53,16 +87,18 @@ export default function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className={`relative font-medium transition-colors text-xs uppercase tracking-[0.2em] group ${solidMode ? 'text-slate-600 hover:text-sky-600' : 'text-slate-200 hover:text-white'}`}
+              onClick={() => setActiveLink(link.href)}
+              className={`relative font-medium transition-colors text-xs uppercase tracking-[0.2em] group ${solidMode ? 'text-slate-600 hover:text-sky-600' : 'text-slate-200 hover:text-white'} ${activeLink === link.href ? (solidMode ? '!text-sky-600' : '!text-white') : ''}`}
             >
               {link.name}
-              <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-sky-500 group-hover:w-full transition-all duration-300"></span>
+              <span className={`absolute -bottom-2 left-0 h-[2px] bg-sky-500 transition-all duration-300 ${activeLink === link.href ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </a>
           ))}
           <a
             href="#contact"
-            className="group relative inline-flex items-center justify-center px-8 py-3 text-sm font-bold text-white uppercase tracking-widest bg-sky-600 rounded-lg hover:bg-sky-500 transition-colors shadow-md"
+            className="group relative inline-flex items-center justify-center gap-2 px-8 py-3 text-sm font-bold text-white uppercase tracking-widest bg-sky-600 rounded-lg hover:bg-sky-500 transition-colors shadow-md"
           >
+            <Phone className="w-4 h-4" />
             Hubungi Kami
           </a>
         </nav>
@@ -89,8 +125,11 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-6 py-4 text-slate-600 hover:bg-sky-50 hover:text-sky-600 font-medium transition-colors uppercase tracking-widest text-sm border-b border-slate-100"
+                onClick={() => {
+                  setActiveLink(link.href);
+                  setMobileMenuOpen(false);
+                }}
+                className={`px-6 py-4 hover:bg-sky-50 hover:text-sky-600 font-medium transition-colors uppercase tracking-widest text-sm border-b border-slate-100 ${activeLink === link.href ? 'text-sky-600 bg-sky-50' : 'text-slate-600'}`}
               >
                 {link.name}
               </a>
@@ -99,8 +138,9 @@ export default function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-center bg-sky-600 hover:bg-sky-500 transition-colors text-white px-6 py-4 rounded-lg font-bold uppercase tracking-widest text-sm shadow-md"
+                className="flex justify-center items-center gap-2 text-center bg-sky-600 hover:bg-sky-500 transition-colors text-white px-6 py-4 rounded-lg font-bold uppercase tracking-widest text-sm shadow-md"
               >
+                <Phone className="w-4 h-4" />
                 Hubungi Kami
               </a>
             </div>

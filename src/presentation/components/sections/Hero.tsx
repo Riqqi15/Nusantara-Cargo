@@ -103,7 +103,7 @@ export default function Hero({ hero }: HeroProps) {
           
           <a
             href="#services"
-            className="group relative w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 text-sm font-bold text-white uppercase tracking-widest bg-white/10 backdrop-blur-md hover:bg-white/20 border border-white/30 transition-colors rounded-lg"
+            className="group relative w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 text-sm font-bold text-white uppercase tracking-widest bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors rounded-lg shadow-md"
           >
             Pelajari Layanan
           </a>

@@ -25,6 +25,7 @@ export default function RootLayout({
   return (
       <html
       lang="en"
+      suppressHydrationWarning
       className={`${inter.variable} ${nunito.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent/30 selection:text-white">{children}</body>

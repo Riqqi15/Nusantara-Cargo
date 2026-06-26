@@ -33,6 +33,21 @@ export interface AboutCompany {
   imageUrl: string;
 }
 
+export interface Partner {
+  id: string;
+  name: string;
+  logoUrl: string;
+}
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  company: string;
+  content: string;
+  avatarUrl?: string;
+}
+
 export interface LandingPageContent {
   hero: {
     headline: string;
@@ -44,4 +59,6 @@ export interface LandingPageContent {
   achievements: Achievement[];
   services: Service[];
   fleets: Fleet[];
+  partners: Partner[];
+  testimonials: Testimonial[];
 }

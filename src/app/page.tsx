@@ -6,6 +6,8 @@ import StatsBar from '../presentation/components/sections/StatsBar';
 import AboutUs from '../presentation/components/sections/AboutUs';
 import Services from '../presentation/components/sections/Services';
 import FleetShowcase from '../presentation/components/sections/Fleet';
+import Partnerships from '../presentation/components/sections/Partnerships';
+import Testimonials from '../presentation/components/sections/Testimonials';
 
 // Next.js Server Component (Async Component in App Router)
 export default async function Home() {
@@ -23,12 +25,16 @@ export default async function Home() {
         <div className="relative">
           <StatsBar stats={content.achievements} />
         </div>
-        
+
         <AboutUs about={content.about} />
         
         <Services services={content.services} />
         
         <FleetShowcase fleets={content.fleets} />
+
+        <Partnerships partners={content.partners} />
+
+        <Testimonials testimonials={content.testimonials} />
         
         <Footer />
       </div>

@@ -30,7 +30,7 @@ export class InMemoryContentRepository implements ContentRepository {
       },
       achievements: [
         { id: '1', value: '15+', label: 'Tahun Pengalaman' },
-        { id: '2', value: '34', label: 'Provinsi Dijangkau' },
+        { id: '2', value: '13', label: 'Kota Destinasi' },
         { id: '3', value: '25K+', label: 'Ton Kargo / Tahun' },
         { id: '4', value: '99%', label: 'On-Time Delivery' },
       ],
@@ -74,6 +74,41 @@ export class InMemoryContentRepository implements ContentRepository {
           minRunway: '2,500 m',
           description: 'Jagoan pengiriman internasional jarak jauh untuk muatan medium-heavy.',
           imageUrl: '/images/cargo_fleet_2_1782412778405.png'
+        }
+      ],
+      partners: [
+        { id: 'p1', name: 'Angkasa Pura', logoUrl: 'https://logo.clearbit.com/angkasapura2.co.id' },
+        { id: 'p2', name: 'Garuda Indonesia', logoUrl: 'https://logo.clearbit.com/garuda-indonesia.com' },
+        { id: 'p3', name: 'DHL', logoUrl: 'https://logo.clearbit.com/dhl.com' },
+        { id: 'p4', name: 'FedEx', logoUrl: 'https://logo.clearbit.com/fedex.com' },
+        { id: 'p5', name: 'Pertamina', logoUrl: 'https://logo.clearbit.com/pertamina.com' },
+        { id: 'p6', name: 'Amazon', logoUrl: 'https://logo.clearbit.com/amazon.com' },
+        { id: 'p7', name: 'Alibaba', logoUrl: 'https://logo.clearbit.com/alibaba.com' },
+      ],
+      testimonials: [
+        {
+          id: 't1',
+          name: 'Budi Santoso',
+          role: 'Supply Chain Manager',
+          company: 'PT. Teknologi Global',
+          content: 'Nusantara Cargo sangat dapat diandalkan. Pengiriman komponen elektronik kami dari luar negeri selalu tepat waktu dan aman.',
+          avatarUrl: ''
+        },
+        {
+          id: 't2',
+          name: 'Siti Aminah',
+          role: 'CEO',
+          company: 'Export Indo',
+          content: 'Layanan carter mereka sangat membantu ketika kami memiliki kebutuhan mendesak. Timnya profesional dan responsif.',
+          avatarUrl: ''
+        },
+        {
+          id: 't3',
+          name: 'Andi Pratama',
+          role: 'Direktur Operasional',
+          company: 'Medikal Utama',
+          content: 'Pengiriman alat kesehatan membutuhkan kehati-hatian ekstra, dan Nusantara Cargo membuktikan mereka ahlinya.',
+          avatarUrl: ''
         }
       ]
     };
